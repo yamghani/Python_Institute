@@ -39,7 +39,6 @@
 
 import this
 
-
 # ----------------------------------------------------------------------
 
 print("A" > "a")
@@ -53,6 +52,8 @@ print(1 + 1)
 print(1 + "1")
 
 integer_number = int(input("Enter an integer number: "))
+
+
 # 15.6
 # '15.6'
 # ----------------------------------------------------------------------
@@ -226,8 +227,8 @@ integer_number = int(input("Enter an integer number: "))
 # When giving a name to a variable, you should use a lowercase letter or word(s), and separate words by underscores,
 # e.g., x, var, my_variable. The same convention applies to global variables.
 #
-# Functions follow the same rules as variables, i.e., when giving a name to a function, you should use a lowercase letter
-# or word(s) separated by underscores, e.g., fun, my_function.
+# Functions follow the same rules as variables, i.e., when giving a name to a function, you should use a
+# lowercase letter or word(s) separated by underscores, e.g., fun, my_function.
 #
 # When giving a name to a class, you should adopt the CamelCase style, e.g., MySampleClass, or if
 # there''s only one word, start it with a capital letter, e.g., Sample.
@@ -239,7 +240,7 @@ integer_number = int(input("Enter an integer number: "))
 # e.g., TOTAL, MY_CONSTANT.
 
 # When giving a name to a module, you should use a lowercase word or words, preferably short, and separate them with
-#     underscores, e.g., samples.py, my_samples..
+#     underscores, e.g., samples.py, my_samples...
 #
 # When giving a name to a package, you should use a lowercase word or words, preferably short ones. You shouldnt
 # separate words, e.g., package, mypackage.
@@ -273,7 +274,7 @@ integer_number = int(input("Enter an integer number: "))
 
 # ----------------------------------------------------------------------
 
-# Type hinting is a mechanism introduced with Python 3.5 and desecribed in PEP 484 that allows you to equip your code
+# Type hinting is a mechanism introduced with Python 3.5 and described in PEP 484 that allows you to equip your code
 # with additional information without using comments. It is an optional, but more formalized, feature that makes it
 # possible for you to use the Python built-in typing module to provide type hint information in your code in order to
 # leave certain suggestions, mark certain possible problems that may come up in the development process, and label
@@ -289,17 +290,19 @@ def hello(name):
 def hello(name: str) -> str:
     return "Hello, " + name
 
+
 # You must remember that type hinting in Python is not used at runtime, which means all the type information you
 # leave in the code in the form of annotations is erased when the program is executed. In other words, type hinting
 # does not have any effect on the operation of your code.
 
 # we encourage you to have a closer look at
 # PEP 483 – The theory of type hints,
-# PEP 484 – Type hints (information about the syntax for type annotations, static analysis and refactoring, type checking)
+# PEP 484 – Type hints (information about the syntax for type annotations,
+#                       static analysis and refactoring, type checking)
 # PEP 3107 – Function Annotations (information about the syntax for adding metadata annotations to Python functions).
 
 # ----------------------------------------------------------------------
-#DocStrings
+# DocStrings
 
 # they can still be extracted by some specific software tools (for more information about these, consult PEP 256,
 # which provides information about Docutils, a Python Dosctring Processing System).
@@ -319,6 +322,7 @@ def my_function():
     """I am a docstring."""
     ...
 
+
 # If you need to use any backslashes in your docstrings, then you should follow the r"""raw triple double quotes"""
 # format
 # If you need to use Unicode docstrings, then follow the u"""Unicode triple-quote strings""" format.
@@ -328,9 +332,13 @@ def my_function():
 # an imperative (e.g. "Do this", "Return that", "Compute this", "Convert that", etc.), not a description
 # (e.g. "Does this", "Returns that", "Forms this", "Extends that", etc.). For example:
 
+
 def greeting(name):
     """Take a name and return its replicated form."""
+    r"""Take a name and \ return its replicated form."""
     return name * 2
+
+
 # ----------------------------------------------------------------------
 
 
@@ -408,9 +416,9 @@ class Vehicle:
 # Docstring formatting types
 # You may have noticed that we have used two different docstring formats for documenting the king_creator() function
 # and the Vehicle class. The first type of formatting is called reStructuredText, and it's the official Python ' \
-#         'documentation standard explained and described in PEP 287. The second example uses the NumPy/SciPy docstrings' \
-#         ' format (for details, click here, which is a combination of the Google docstrings format and the ' \
-#         'reStructuredText format.
+#   'documentation standard explained and described in PEP 287. The second example uses the NumPy/SciPy docstrings' \
+#   ' format (for details, click here, which is a combination of the Google docstrings format and the ' \
+#   'reStructuredText format.
 #
 # Both formatting types are good for the purposes of creating formal documentation, and both of them are supported
 # by Sphinx, one of the most popular Python documentation generators.
@@ -458,7 +466,8 @@ def my_fun(a, b):
     Returns:
     int: Description of the return value.
     """
-    return a*b
+    return a * b
+
 
 print(my_fun.__doc__)
 help(my_fun)

@@ -160,7 +160,9 @@ print('.' * 20)
 # d1 object receives an instance variable named 'class_var'
 d1.class_var = "I'm messing with the class variable"
 
-# d1 object owns the variable named 'class_var' which holds a different value than the class variable named in the same way
+
+# d1 object owns the variable named 'class_var' which holds a different value than the
+# class variable named in the same way
 print('contents of d1:', d1.__dict__)
 print(d1.class_var)
 print('.' * 20)
@@ -356,7 +358,7 @@ print(p1 + p2)
 # ----------------------------------------------------------------------
 # Python core syntax expressions
 
-# he following tables help you in situations where you like to implement a custom method for a Python core operation
+# The following tables help you in situations where you like to implement a custom method for a Python core operation
 
 # Comparison methods
 # Function or operator	Magic method	Implementation meaning or purpose
@@ -584,7 +586,7 @@ for element in Wax(), Cheese(), Wood():
     except AttributeError:
         print('No melt() method')
 
-# Unfortunatelly, the Wood class is not equipped with this method, so an AttributeError exception occurs.
+# Unfortunately, the Wood class is not equipped with this method, so an AttributeError exception occurs.
 
 # ----------------------------------------------------------------------
 # we can pass arguments in any order if we are assigning keywords to all argument values,
@@ -602,6 +604,7 @@ print('--', '++')
 # list
 a_list = list()
 b_list = list(10, 20, 43, 54, 23, 23, 34, 23, 2)
+b_list = list((10, 20, 43, 54, 23, 23, 34, 23, 2))
 
 print(a_list)
 print(b_list)
@@ -625,7 +628,9 @@ def combiner(a, b, *args, **kwargs):
     print(a, type(a))
     print(b, type(b))
     print(args, type(args))
+    # print(args[0])
     print(kwargs, type(kwargs))
+    # print(kwargs['argument1'])
 
 
 combiner(10, '20', 40, 60, 30, argument1=50, argument2='66')
@@ -635,7 +640,7 @@ combiner(10, '20', 40, 60, 30, argument1=50, argument2='66')
 
 
 def combiner(a, b, *args, **kwargs):
-    # super_combiner(*args, **kwargs)
+    super_combiner(*args, **kwargs)
     # if we remove asteriks all is captured by my_args
     super_combiner(args, kwargs)
 
@@ -671,7 +676,9 @@ combiner(1, '1', 1, 1, c=2, argument1=1, argument2='1')
 # functions, methods, and classes.
 #
 # The decorator's operation is based on wrapping the original function with a new "decorating" function (or class), ' \
-#              'hence the name "decoration". This is done by passing the original function (i.e., the decorated function) as a parameter to the decorating function so that the decorating function can call the passed function. The decorating function returns a function that can be called later.
+# hence the name "decoration". This is done by passing the original function (i.e., the decorated function) as a
+# parameter to the decorating function so that the decorating function can call the passed function.
+# The decorating function returns a function that can be called later.
 #
 # Of course, the decorating function does more, because it can take the parameters of the decorated function and
 # perform additional actions and that make it a real decorating function.
@@ -690,7 +697,7 @@ combiner(1, '1', 1, 1, c=2, argument1=1, argument2='1')
 # the measurement of execution time;
 # message logging;
 # thread synchronization;
-# code refactorization;
+# code re-factorization;
 # caching.
 
 # First sample
@@ -702,6 +709,7 @@ def simple_hello():
 
 def simple_decorator(function):
     print('We are about to call "{}"'.format(function.__name__))
+    # print(function.__class__)
     return function
 
 
@@ -812,6 +820,7 @@ def big_container(collective_material):
         def internal_wrapper(*args):
             our_function(*args)
             print('<strong>*</strong> The whole order would be packed with', collective_material)
+            # our_function(*args)
             print()
 
         return internal_wrapper
@@ -822,9 +831,9 @@ def big_container(collective_material):
 def warehouse_decorator(material):
     def wrapper(our_function):
         def internal_wrapper(*args):
-            our_function(*args)
-            print('<strong>*</strong> Wrapping items from {} with {}'.format(our_function.__name__, material))
             # our_function(*args)
+            print('<strong>*</strong> Wrapping items from {} with {}'.format(our_function.__name__, material))
+            our_function(*args)
 
         return internal_wrapper
 
@@ -984,15 +993,15 @@ print('The VIN is', car.VIN)
 # The instance methods, as the first parameter, take the self parameter, which is their hallmark.
 # It’s worth emphasizing and remembering that self allows you to refer to the instance.
 
-# The name of the parameter self was chosen arbitrarily and you can use a different word,
+# The name of the parameter self was chosen arbitrarily, and you can use a different word,
 # but you must do it consistently in your code.
 
 class Example:
-    def __init__(self, value):
-        self.__internal = value
+    def __init__(selfie, value):
+        selfie.__internal = value
 
-    def get_internal(self):
-        return self.__internal
+    def get_internal(selfie):
+        return selfie.__internal
 
 
 example1 = Example(10)
@@ -1189,6 +1198,13 @@ class Tank:
             print('It is good to remember to sanitize the remains from the tank!')
         self.__level = None
 
+    # @level.getter
+    # def level(self):
+    #     if self.__level > 0:
+    #         return self.__level + 2
+    #     else:
+    #         return 0
+
 
 # our_tank object has a capacity of 20 units
 our_tank = Tank(20)
@@ -1339,6 +1355,11 @@ class Ethernet(Connection):
         super().download()
 
 
+class TestConnection(Connection):
+    def __init__(self):
+        super().__init__('1000Mbit/s')
+
+
 # I started my IT adventure with an old-school dial up connection
 my_computer = Personal_Computer('1995', DialUp())
 my_computer.connection.download()
@@ -1349,6 +1370,10 @@ my_computer.connection.download()
 
 # finally I upgraded to Ethernet
 my_computer.connection = Ethernet()
+my_computer.connection.download()
+
+# It uses the default download method in Connection class
+my_computer.connection = TestConnection()
 my_computer.connection.download()
 
 
@@ -1558,6 +1583,8 @@ class IBANDict(dict):
 
     def update(self, *args, **kwargs):
         for _key, _val in dict(*args, **kwargs).items():
+            print(_key)
+            print("\t{}".format(_val))
             self.__setitem__(_key, _val)
 
 
@@ -1672,6 +1699,7 @@ except Exception as e:
         print('Outer exception (e):', e)
         print('Outer exception referenced:', f.__context__)
         print('Is it the same object:', f.__context__ is e)
+        print(f.__cause__)
 
 
 # Advanced exceptions - explicitly chained exceptions
@@ -1702,6 +1730,7 @@ personnel_check()
 # To catch the cause of the RocketNotReadyError exception, you should access
 # the __cause__ attribute of the RocketNotReadyError object.
 
+
 class RocketNotReadyError(Exception):
     pass
 
@@ -1714,6 +1743,7 @@ def personnel_check():
         print("\tThe navigator's name is", crew[3])
     except IndexError as e:
         raise RocketNotReadyError('Crew is incomplete') from e
+
 
 crew = ['John', 'Mary', 'Mike']
 print('Final check procedure')
@@ -1803,6 +1833,7 @@ except RocketNotReadyError as f:
 # the exceptions because we see the final wording Final check is over.
 
 import traceback
+
 
 class RocketNotReadyError(Exception):
     pass
@@ -1958,7 +1989,7 @@ print("Is it the same object?", a_list is b_list)
 import copy
 import time
 
-a_list = [(1,2,3) for x in range(1_000_000)]
+a_list = [(1, 2, 3) for x in range(1_000_000)]
 
 print('Single reference copy')
 time_start = time.time()
@@ -2002,7 +2033,6 @@ print("Let's modify the movies list")
 a_dict['movies'].append('Diamonds Are Forever (1971)')
 print('a_dict movies:', a_dict['movies'])
 print('b_dict movies:', b_dict['movies'])
-
 
 
 # Pay attention to the fact that the __init__() method is executed only once, despite the fact we own two
@@ -2139,13 +2169,16 @@ print('Contents:', b_list)
 # Note that none of the class’s code or data are pickled.
 
 # Hence, your role is to ensure that the environment where the class or function is unpickled is able to import
-# the class or function definition. In other words, the function or class must be available in the namespace of your code reading the pickle file.
+# the class or function definition. In other words, the function or class must be available in the namespace of your
+# code reading the pickle file.
 # Otherwise, an AtrributeError exception will be raised.
 
 import pickle
 
+
 def f1():
     print('Hello from the jar!')
+
 
 with open('function.pckl', 'wb') as file_out:
     pickle.dump(f1, file_out)
@@ -2161,12 +2194,14 @@ data()
 # ------------------------------------------------------------------
 import pickle
 
+
 class Cucumber:
     def __init__(self):
         self.size = 'small'
 
     def get_size(self):
         return self.size
+
 
 cucu = Cucumber()
 
@@ -2184,8 +2219,8 @@ print(data.get_size())
 
 
 # ------------------------------------------------------------------
-# Thereis another handy module, called shelve, that is built on top of pickle, and implements a serialization dictionary
-# whereobjects are pickled and associated with a key. The keys must be ordinary strings, because the underlying database
+# There is another handy module, called shelve, that is built on top of pickle,and implements a serialization dictionary
+# where objects are pickled and associated with a key. The keys must be ordinary strings,because the underlying database
 # (dbm) requires strings.
 
 # Value	Meaning
@@ -2233,8 +2268,8 @@ new_shelve.close()
 # Metaprogramming is a programming technique in which computer programs have the ability to modify their own or
 # other programs’ codes.
 
-# For Python, code modifications can occure while the code is being executed, and you might have already experienced it
-# while implementing decorators, overriding operators, or even implementing the properties protocol.
+# For Python, code modifications can occur while the code is being executed, and you might have already experienced it
+# while implementing decorators, overriding operators, or even implementing the properties' protocol.
 
 # 1 ) this technique could be used for tool preparation; those tools could be applied to your code to make it follow
 # specific programming patterns,
@@ -2245,7 +2280,7 @@ new_shelve.close()
 # Tim Peters, the Python guru who authored the Zen of Python, expressed his feelings about metaclasses in the comp.lang.
 #     python newsgroup on 12/22/2002:
 #
-# [metaclasses] are deeper magic than 99% of users should ever worry about. If you wonder whether you need
+# [meta-classes] are deeper magic than 99% of users should ever worry about. If you wonder whether you need
 # them,  don't (the people who actually need them know with certainty that they need them, and don't need an explanation
 # about why).
 
@@ -2257,7 +2292,7 @@ new_shelve.close()
 #
 # decorators bind the names of decorated functions or classes to new callable objects. Class decorators are applied
 # when classes are instantiated;
-# metaclasses redirect class instantiations to dedicated logic, contained in metaclasses. Metaclasses are applied
+# metaclasses redirect class instantiations to dedicated logic, contained in meta-classes. Meta-classes are applied
 # when class definitions are read to create classes, well before classes are instantiated.
 
 # Metaclasses usually enter the game when we program advanced modules or frameworks, where a lot of precise automation
@@ -2303,6 +2338,7 @@ for t in (int, list, type):
 # __bases__ – inherent for classes; it’s a tuple and contains information about the base classes of a class;
 # __dict__ – inherent for both classes and instances; contains a dictionary (or other type mapping object) of
 # the object's attributes.
+
 
 class Dog:
     pass
@@ -2357,9 +2393,11 @@ print('The class attributes are:', Dog.__dict__)
 def bark(self):
     print('Woof, woof')
 
+
 class Animal:
     def feed(self):
         print('It is feeding time!')
+
 
 Dog = type('Dog', (Animal, ), {'age':0, 'bark':bark})
 
@@ -2428,59 +2466,9 @@ t = test()
 print(t._test__numbers)
 
 
-
-
-
-
 # ----------------------------------------------------------------------
 
 
 # ----------------------------------------------------------------------
 
 
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------
-
-
-# ----------------------------------------------------------------------

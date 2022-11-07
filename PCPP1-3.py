@@ -196,7 +196,7 @@ button = tk.Button(window, text="Button")
 button.pack(fill=tk.X)
 
 switch = tk.IntVar()
-switch.set(1)
+switch.set(0)
 
 checkbutton = tk.Checkbutton(window, text="Check Button", variable=switch)
 checkbutton.pack()
@@ -228,7 +228,7 @@ from tkinter import messagebox
 
 
 def click():
-    tk.messagebox.showinfo("Click!","I love clicks!")
+    tk.messagebox.showinfo("Click!", "I love clicks!")
 
 
 window = tk.Tk()
@@ -239,7 +239,7 @@ button = tk.Button(window, text="Button", command=click)
 button.pack(fill=tk.X)
 
 frame = tk.Frame(window, height=30, width=100, bg="#55BF40")
-frame.pack();
+frame.pack()
 
 window.mainloop()
 
@@ -276,7 +276,7 @@ button = tk.Button(window, text="Button", command=click)
 button.pack(fill=tk.X)
 
 frame = tk.Frame(window, height=30, width=100, bg="#55BF40")
-frame.bind("<Button-1>", click)   # Line II
+frame.bind("<Button-2>", click)   # Line II
 frame.pack()
 
 window.mainloop()
@@ -316,6 +316,8 @@ label.pack()
 
 button = tk.Button(window, text="Button", command=click)
 button.pack(fill=tk.X)
+button.config(command=lambda: None)
+
 
 frame = tk.Frame(window, height=30, width=100, bg="#55BF40")
 frame.bind("<Button-1>", click)
@@ -332,7 +334,7 @@ window.mainloop()
 # The method requires one argument identifying the event being unbound.
 #
 # Note: the information about a previously used callback is lost. You cannot
-# retrieve it automatically and you must repeat the bind() invocation.
+# retrieve it automatically, and you must repeat the bind() invocation.
 
 import tkinter as tk
 from tkinter import messagebox
@@ -576,27 +578,6 @@ window.mainloop()
 #
 # Widget.after_cancel(id)
 
-import tkinter as tk
-
-
-def blink():
-    global is_white
-    if is_white:
-        color = 'black'
-    else:
-        color = 'white'
-    is_white = not is_white
-    frame.config(bg=color)
-    frame.after(500, blink)
-
-
-is_white = True
-window = tk.Tk()
-frame = tk.Frame(window, width=200, height=100, bg='white')
-frame.after(500, blink)
-frame.pack()
-window.mainloop()
-
 # ----------------------------------------------------------------------
 # The destroy() method is very destructive. It removes the widget completely, not only from your sight, but also from
 # the event manager’s memory, as the widget’s object is deleted and becomes inaccessible.
@@ -644,7 +625,7 @@ window.mainloop()
 # ----------------------------------------------------------------------
 # Variables
 # To implement some of its functions, Tkinter uses a very special kind of variable called an observable variable.
-# This variable works like a regular variable (i.e., it’s able to store values which are accessible to the outside world)
+# This variable works like a regular variable (i.e., it’s able to store values which are accessible to the outside world
 # but there is something more – any change of the variable’s state can be observed by a number of external agents.
 # For example, the Entry widget can use its own observable variable to inform other objects that the contents of the
 # input field have been changed.
@@ -778,8 +759,9 @@ def count():
     global counter
     counter += 1
 
+
 def show():
-    messagebox.showinfo("","counter=" + str(counter) + ",state=" + str(switch.get()))
+    messagebox.showinfo("", "counter=" + str(counter) + ",state=" + str(switch.get()))
 
 
 window = tk.Tk()
@@ -907,7 +889,7 @@ window = tk.Tk()
 label_frame_1 = tk.LabelFrame(window, text="Frame #1",
                               width=200, height=100, bg='white')
 label_frame_2 = tk.LabelFrame(window, text="Frame #2",
-                              labelanchor='se', width=200, height=100, bg='yellow')
+                              labelanchor='sw', width=200, height=100, bg='yellow')
 
 button_1_1 = tk.Button(label_frame_1, text="Button #1 inside Frame #1")
 button_1_2 = tk.Button(label_frame_1, text="Button #2 inside Frame #1")
@@ -1016,6 +998,7 @@ def are_you_sure():
 
 def open_file():
     messagebox.showinfo("Open doc", "We'll open a file here...")
+
 
 window = tk.Tk()
 
@@ -1179,7 +1162,8 @@ size = 100
 grows = True
 window = tk.Tk()
 window.geometry("100x100")
-window.bind("&lt;Button-1&gt;", click)
+window.bind("<Button-1>", click)
+# window.bind("&lt;Button-1&gt;", click)
 window.mainloop()
 
 # ----------------------------------------------------------------------
@@ -1277,7 +1261,7 @@ def question():
     print(answer)
 
 
-window = tkinter.Tk()
+window = tk.Tk()
 button = tk.Button(window, text="What are your plans?", command=question)
 button.pack()
 window.mainloop()
@@ -1401,7 +1385,7 @@ import tkinter as tk
 window = tk.Tk()
 canvas = tk.Canvas(window, width=400, height=400, bg='blue')
 canvas.create_text(200, 200, text="Mary\nhad\na\nlittle\nlamb",
-                   font=("Arial","40","bold"),
+                   font=("Arial", "40", "bold"),
                    justify=tk.CENTER,
                    fill='white')
 button = tk.Button(window, text="Quit", command=window.destroy)
@@ -1414,7 +1398,7 @@ import tkinter as tk
 
 window = tk.Tk()
 canvas = tk.Canvas(window, width=400, height=400, bg='yellow')
-image = tk.PhotoImage(file='logo.png')
+image = tk.PhotoImage(file='C:/Personal/Python_Institute/logo.png')
 canvas.create_image(200, 200, image=image)
 button = tk.Button(window, text="Quit", command=window.destroy)
 canvas.grid(row=0)
@@ -1435,10 +1419,12 @@ window.mainloop()
 
 import tkinter as tk
 import PIL
+from PIL import  Image
+from PIL import  ImageTk
 
 window = tk.Tk()
 canvas = tk.Canvas(window, width=400, height=400, bg='red')
-jpg = PIL.Image.open('logo.jpg')
+jpg = PIL.Image.open('C:/Personal/Python_Institute/logo.jpg')
 image = PIL.ImageTk.PhotoImage(jpg)
 canvas.create_image(200, 200, image=image)
 button = tk.Button(window, text="Quit", command=window.destroy)

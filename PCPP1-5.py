@@ -59,7 +59,6 @@ c.execute('INSERT INTO tasks (name, priority) VALUES (?,?)', ('My first task', 1
 conn.commit()
 conn.close()
 
-
 # ----------------------------------------------------------------------
 # The executemany method allows you to insert multiple records at once. As an argument, it accepts an SQL statement
 # and an array containing any number of tuples.
@@ -81,7 +80,6 @@ tasks = [
 c.executemany('INSERT INTO tasks (name, priority) VALUES (?,?)', tasks)
 conn.commit()
 conn.close()
-
 
 # ----------------------------------------------------------------------
 # Refactoring
@@ -113,7 +111,6 @@ class Todo:
 app = Todo()
 app.add_task()
 
-
 # ----------------------------------------------------------------------
 # The SELECT statement allows you to read data from one or more tables. Its syntax looks like this:
 #
@@ -135,13 +132,12 @@ for row in c.execute('SELECT * FROM tasks'):
     print(row)
 conn.close()
 
-
 # ----------------------------------------------------------------------
 # The fetchall method fetches all records (those not yet fetched from the query result)
 # The fetchall method is less efficient than the iterator, because it reads all records into the memory and then returns
 # a list of tuples.
 
-# For small amounts of data, it doesnt matter, but if your table contains a huge number of records, this can cause
+# For small amounts of data, it doesn't matter, but if your table contains a huge number of records, this can cause
 # # memory issues.
 
 import sqlite3
@@ -261,26 +257,24 @@ for book in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for author in root.iter('author'):
     print(author.text)
-
 
 # Unlike the iter method, the findall method only searches the children at the first nesting level.
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for book in root.findall('book'):
     print(book.get('title'))
     print(book.attrib['title'])
 
-
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for author in root.findall('author'):
     print(author.text)
@@ -289,10 +283,9 @@ for author in root.findall('author'):
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 print(root.find('book').get('title'))
-
 
 # ----------------------------------------------------------------------
 # Let's modify the element tree and create a new xml file based on it with the following movie data:
@@ -305,7 +298,7 @@ print(root.find('book').get('title'))
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -318,7 +311,7 @@ for child in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -332,7 +325,7 @@ for child in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -349,7 +342,7 @@ for child in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -360,8 +353,7 @@ for child in root:
     for sub_child in child:
         print(sub_child.tag, ':', sub_child.text)
 
-tree.write('Python Institute/xml/movies.xml', 'UTF-8', True)
-
+tree.write('C:/Personal/Python_Institute/xml/movies.xml', 'UTF-8', True)
 
 # how to build an xml document in Python.
 # The Element class constructor takes two arguments. The first is the name of the tag to be created,
@@ -387,7 +379,6 @@ movie_1 = ET.SubElement(root, 'movie', {'title': 'The Little Prince', 'rate': '5
 movie_2 = ET.SubElement(root, 'movie', {'title': 'Hamlet', 'rate': '5'})
 ET.dump(root)
 
-
 # ----------------------------------------------------------------------
 # csv - csv file reading and writing;
 
@@ -398,14 +389,14 @@ ET.dump(root)
 
 import csv
 
-with open('Python Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         print(row)
 
 import csv
 
-with open('Python Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         print(','.join(row))
@@ -414,16 +405,16 @@ with open('Python Institute/csv/contacts.csv', newline='') as csvfile:
 
 import csv
 
-with open('Python Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         print(row['Name'], ':', row['Phone'])
 
- # If your file doesn't have a header, you must define it using the fieldnames argument
+# If your file doesn't have a header, you must define it using the fieldnames argument
 
 import csv
 
-with open('Python Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     fieldnames = ['Name', 'Phone']
     reader = csv.DictReader(csvfile, fieldnames=fieldnames)
     for row in reader:
@@ -433,10 +424,9 @@ with open('Python Institute/csv/contacts.csv', newline='') as csvfile:
 # Saving csv
 
 
-
 import csv
 
-with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=',')
 
     writer.writerow(['Name', 'Phone'])
@@ -444,7 +434,6 @@ with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvf
     writer.writerow(['father', '222-555-102'])
     writer.writerow(['wife', '222-555-103'])
     writer.writerow(['mother-in-law', '222-555-104'])
-
 
 # QUOTE_MINIMAL means that only values with special characters such as separator or quotechar will be quoted
 
@@ -460,7 +449,7 @@ with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvf
 
 import csv
 
-with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     writer.writerow(['Name', 'Phone'])
@@ -470,12 +459,11 @@ with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvf
     writer.writerow(['mother-in-law', '222-555-104'])
     writer.writerow(['grandmother, grandfather', '222-555-105'])
 
-
- # In the csv module, there is an analogous class called DictWriter with which we can map dictionaries to rows.
+# In the csv module, there is an analogous class called DictWriter with which we can map dictionaries to rows.
 
 import csv
 
-with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
+with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
     fieldnames = ['Name', 'Phone']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -485,7 +473,6 @@ with open('Python Institute/csv/exported_contacts.csv', 'w', newline='') as csvf
     writer.writerow({'Name': 'wife', 'Phone': '222-555-103'})
     writer.writerow({'Name': 'mother-in-law', 'Phone': '222-555-104'})
     writer.writerow({'Name': 'grandmother, grandfather and auntie', 'Phone': '222-555-105'})
-
 
 # ----------------------------------------------------------------------
 # logging - basics logging facility for Python;
@@ -526,7 +513,6 @@ logger.warning('Your WARNING message')
 logger.info('Your INFO message')
 logger.debug('Your DEBUG message')
 
-
 import logging
 
 logging.basicConfig()
@@ -549,7 +535,7 @@ logger.debug('Your DEBUG message')
 
 import logging
 
-logging.basicConfig(level=logging.CRITICAL, filename='Python Institute/logs/prod.log', filemode='a')
+logging.basicConfig(level=logging.CRITICAL, filename='C:/Personal/Python_Institute/logs/prod.log', filemode='a')
 
 logger = logging.getLogger()
 
@@ -566,6 +552,7 @@ logger.debug('Your DEBUG message')
 
 import logging
 
+FORMAT = '%(name)s:%(levelname)s:%(asctime)s:%(message)s:%(lineno)d:%(processName)s'
 FORMAT = '%(name)s:%(levelname)s:%(asctime)s:%(message)s'
 
 logging.basicConfig(level=logging.CRITICAL, filename='prod.log', filemode='a', format=FORMAT)
@@ -578,14 +565,13 @@ logger.warning('Your WARNING message')
 logger.info('Your INFO message')
 logger.debug('Your DEBUG message')
 
-
 # Each logger can save logs in different locations as well as in different formats.
 # The logging module has the FileHandler class, which facilitates this task.
 # you need to add the created handler to your logger using the addHandler method.
 
 # NOTE: Each logger can have several handlers added. One handler can save logs to a file,
 # while another can send them to an external service. In order to process messages
-# with a level lower than WARNING by added handlers, it iss necessary to set this level threshold in
+# with a level lower than WARNING by added handlers, it is necessary to set this level threshold in
 # the root logger.
 
 import logging
@@ -603,12 +589,12 @@ logger.warning('Your WARNING message')
 logger.info('Your INFO message')
 logger.debug('Your DEBUG message')
 
-
 # Adding Formatter to Handler
 
 import logging
 
 FORMAT = '%(name)s:%(levelname)s:%(asctime)s:%(message)s'
+# FORMAT = '%(name)s:%(levelname)s:%(asctime)s:%(message)s:%(processName)s'
 
 logger = logging.getLogger(__name__)
 
@@ -617,7 +603,7 @@ handler.setLevel(logging.CRITICAL)
 
 formatter = logging.Formatter(FORMAT)
 handler.setFormatter(formatter)
-
+# handler.set_name("MyTest")
 logger.addHandler(handler)
 
 logger.critical('Your CRITICAL message')
@@ -625,7 +611,6 @@ logger.error('Your ERROR message')
 logger.warning('Your WARNING message')
 logger.info('Your INFO message')
 logger.debug('Your DEBUG message')
-
 
 # ----------------------------------------------------------------------
 
@@ -657,15 +642,15 @@ logger.debug('Your DEBUG message')
 # port = 6379
 # db = 0
 
-# Its also possible to access the values stored in the options by using the get method.
+# It is also possible to access the values stored in the options by using the get method.
 # The get method requires the section name and key to be passed. This is what it looks like in practice:
 
 import configparser
 
 config = configparser.ConfigParser()
-print(config.read('config.ini'))
+print(config.read('C:/Personal/Python_Institute/config/config.ini'))
 
-print('Sections:', config.sections(),'\n')
+print('Sections:', config.sections(), '\n')
 
 print('mariadb section:')
 print('Host:', config['mariadb']['host'])
@@ -718,7 +703,7 @@ dict = {
 
 config.read_dict(dict)
 
-print('Sections:', config.sections(),'\n')
+print('Sections:', config.sections(), '\n')
 
 print('mariadb section:')
 print('Host:', config['mariadb']['host'])
@@ -730,7 +715,6 @@ print('redis section:')
 print('Host:', config['redis']['host'])
 print('Port:', int(config['redis']['port']))
 print('Database number:', int(config['redis']['db']))
-
 
 # Creating Config File
 # To create a configuration file, you should treat the ConfigParser object as a dictionary
@@ -747,9 +731,8 @@ config['mariadb'] = {'name': 'hello',
 config['redis'] = {'port': 6379,
                    'db': 0}
 
-with open('config.ini', 'w') as configfile:
+with open('C:/Personal/Python_Institute/config/config.ini', 'w') as configfile:
     config.write(configfile)
-
 
 # ---------------------------------------------------------------------
 # Interpolating values
@@ -781,181 +764,7 @@ with open('config.ini', 'w') as configfile:
 # has been replaced by the value stored in the host option.
 
 
-
-
-
-
-
-
-
-
-
 # ----------------------------------------------------------------------
 
 
-
-
-
-
 # ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-

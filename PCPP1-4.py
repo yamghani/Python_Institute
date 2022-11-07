@@ -1,13 +1,20 @@
+# The following function arguments say more about our views for the future:
+#
+# socket.SHUT_RD - we aren't going to read the server's messages anymore (we declare ourselves deaf)
+# socket.SHUT_WR - we won't say a word (actually, we'll be dumb)
+# socket.SHUT_RDWR - specifies the conjunction of the two previous options.
 
+# Note: socket.gaierror covers more than one possible reason for the failure.
 # ----------------------------------------------------------------------
 import socket
 
 server_addr = input("What server do you want to connect?")
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((server_addr, 80))
-sock.send(b"GET / HTTP/1.1\r\nHost: " +
+sock.send(b"GET / HTTP/1.1\r\nHost: test_img[ ]= ["+
           bytes(server_addr, "utf8") +
           b"\r\nConnection: close\r\n\r\n")
+# sock.settimeout()
 reply = sock.recv(10000)
 sock.shutdown(socket.SHUT_RDWR)
 sock.close()
@@ -16,20 +23,20 @@ print(repr(reply))
 # ----------------------------------------------------------------------
 # The socket.timeout exception
 
-# The connect function throws an exception named socket.gaierror and its name comes from the name of a low-level function
+# The connect function throws exception named socket.gaierror and its name comes from the name of a low-level function
 # (usually provided not by Python but by the OS kernel) named getaddrinfo(). The function tries - among others - to find
 # the full address information regarding the received argument.
 #
 # This exception is raised when the server's reaction doesn't occur in a reasonable time - the length of our patience
 # can be set using a method named settimeout(), but we don't want to go into details.
 
-
-
 # ----------------------------------------------------------------------
+
+# https://edube.org/learn/pcpp1-working-with-restful-apis/json-our-new-friend-7
 
 import json
 
-comics = '"The Meaning of Life" by Monty Python\'s Flying Circus'
+comics = '"The Meaning of Lifetest_img = ["by Monty Python\'s Flying Circus'
 print(json.dumps(comics))
 
 
@@ -94,7 +101,7 @@ class MyEncoder(json.JSONEncoder):
         if isinstance(w, Who):
             return w.__dict__
         else:
-            return super().default(self, z)
+            return super().default(self, w)
 
 
 some_man = Who('John Doe', 42)
@@ -196,9 +203,9 @@ print(new_man.__dict__)
 
 import xml.etree.ElementTree
 
-path = 'Python Institute/xml/cars.xml'
+path = 'C:/Personal/Python_Institute/xml/cars.xml'
 
-cars_for_sale = xml.etree.ElementTree.parse('Python Institute/xml/cars.xml').getroot()
+cars_for_sale = xml.etree.ElementTree.parse(path).getroot()
 print(cars_for_sale.tag)
 for car in cars_for_sale.findall('car'):
     print('\t', car.tag)
@@ -213,7 +220,10 @@ for car in cars_for_sale.findall('car'):
 
 import xml.etree.ElementTree
 
-tree = xml.etree.ElementTree.parse('Python Institute/xml/cars.xml')
+path = 'C:/Personal/Python_Institute/xml/cars.xml'
+
+# tree = xml.etree.ElementTree.parse('Python Institute/xml/cars.xml')
+tree = xml.etree.ElementTree.parse(path)
 cars_for_sale = tree.getroot()
 for car in cars_for_sale.findall('car'):
     if car.find('brand').text == 'Ford' and car.find('model').text == 'Mustang':
@@ -226,7 +236,9 @@ xml.etree.ElementTree.SubElement(new_car, 'model').text = 'Mexico'
 xml.etree.ElementTree.SubElement(new_car, 'production_year').text = '1970'
 xml.etree.ElementTree.SubElement(new_car, 'price', {'currency': 'EUR'}).text = '61800'
 cars_for_sale.append(new_car)
-tree.write('Python Institute/xml/newcars.xml', method='')
+save_path = "C:/Personal/Python_Institute/xml/newcars.xml"
+tree.write(save_path, method='')
+# tree.write('Python Institute/xml/newcars.xml', method='')
 
 # ----------------------------------------------------------------------
 # npm install -g json-server
@@ -235,6 +247,8 @@ tree.write('Python Institute/xml/newcars.xml', method='')
 
 # in the folder where cars.json exists, create a subfolder named public;
 # inside the public folder, create a file named index.html, fill it with some text, and save.
+
+# https://edube.org/learn/pcpp1-working-with-restful-apis/making-life-easier-with-the-requests-module-10
 
 import requests
 
@@ -894,85 +908,3 @@ else:
 
 # ----------------------------------------------------------------------
 
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
-
-
-
-
-
-
-# ----------------------------------------------------------------------
