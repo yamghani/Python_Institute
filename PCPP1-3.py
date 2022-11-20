@@ -542,6 +542,7 @@ window = tk.Tk()
 button_1 = tk.Button(window, text="Regular button");
 button_1["anchor"] = "e"
 button_1["width"] = 20  # pixels!
+# button_1.config(width=20)
 button_1.pack()
 button_2 = tk.Button(window, text="Another button")
 button_2["anchor"] = "sw"
@@ -648,7 +649,7 @@ window.mainloop()
 #
 # Note: the newly created variables are set to:
 #
-# integer o for IntVar;
+# integer 0 for IntVar;
 # float 0.0 for DoubleVar;
 # Boolean False for BooleanVar;
 # string "" for StringVar.
@@ -1065,6 +1066,7 @@ sub_menu_help = tk.Menu(main_menu)
 main_menu.add_command(label="About...", command=about_app, underline=1)
 
 window.bind_all("<Control-q>", are_you_sure)
+# window.bind_all("q", are_you_sure)
 window.mainloop()
 
 
@@ -1320,8 +1322,7 @@ import tkinter as tk
 
 window = tk.Tk()
 canvas = tk.Canvas(window, width=400, height=400, bg='yellow')
-canvas.create_line(10, 380, 200, 10, 380, 380, 10, 380,
-                   arrow=tk.BOTH, fill='red', smooth=True, width=3)
+canvas.create_line(10, 380, 200, 10, 380, 380, 10, 380, arrow=tk.BOTH, fill='red', smooth=True, width=3)
 button = tk.Button(window, text="Quit", command=window.destroy)
 canvas.grid(row=0)
 button.grid(row=1)

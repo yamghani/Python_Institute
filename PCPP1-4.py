@@ -11,7 +11,7 @@ import socket
 server_addr = input("What server do you want to connect?")
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((server_addr, 80))
-sock.send(b"GET / HTTP/1.1\r\nHost: test_img[ ]= ["+
+sock.send(b"GET / HTTP/1.1\r\nHost: test_img[ ]= [" +
           bytes(server_addr, "utf8") +
           b"\r\nConnection: close\r\n\r\n")
 # sock.settimeout()
@@ -131,8 +131,6 @@ some_man = Who('John Doe', 42)
 print(json.dumps(some_man, cls=MyEncoder))
 
 
-
-
 # ----------------------------------------------------------------------
 
 import json
@@ -203,7 +201,7 @@ print(new_man.__dict__)
 
 import xml.etree.ElementTree
 
-path = 'C:/Personal/Python_Institute/xml/cars.xml'
+path = 'C:/dev-git/Python_Institute/xml/cars.xml'
 
 cars_for_sale = xml.etree.ElementTree.parse(path).getroot()
 print(cars_for_sale.tag)
@@ -353,7 +351,6 @@ else:
         print("Server error")
 
 
-
 import requests
 
 key_names = ["id", "brand", "model", "production_year", "convertible"]
@@ -437,9 +434,6 @@ else:
         print("Resource not found")
     else:
         print('Server error')
-
-
-
 
 
 # ----------------------------------------------------------------------
@@ -608,9 +602,6 @@ else:
     else:
         print('Server error')
 
-
-
-
 # ----------------------------------------------------------------------
 
 # DELETE
@@ -666,8 +657,6 @@ else:
         print("Resource not found")
     else:
         print('Server error')
-
-
 
 
 # ----------------------------------------------------------------------

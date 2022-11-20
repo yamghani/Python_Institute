@@ -232,7 +232,7 @@ c.close()
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('Python Institute/xml/books.xml')
+tree = ET.parse('c:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 print('The root tag is:', root.tag)
 print('The root has the following children:')
@@ -257,7 +257,7 @@ for book in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for author in root.iter('author'):
     print(author.text)
@@ -266,7 +266,7 @@ for author in root.iter('author'):
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for book in root.findall('book'):
     print(book.get('title'))
@@ -274,16 +274,16 @@ for book in root.findall('book'):
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for author in root.findall('author'):
     print(author.text)
 
-# he find method returns the first child element containing the specified tag or matching XPath expression.
+# find method returns the first child element containing the specified tag or matching XPath expression.
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 print(root.find('book').get('title'))
 
@@ -298,7 +298,7 @@ print(root.find('book').get('title'))
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -311,7 +311,7 @@ for child in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -325,7 +325,7 @@ for child in root:
 
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('C:/Personal/Python_Institute/xml/books.xml')
+tree = ET.parse('C:/dev-git/Python_Institute/xml/books.xml')
 root = tree.getroot()
 for child in root:
     child.tag = 'movie'
@@ -353,7 +353,7 @@ for child in root:
     for sub_child in child:
         print(sub_child.tag, ':', sub_child.text)
 
-tree.write('C:/Personal/Python_Institute/xml/movies.xml', 'UTF-8', True)
+tree.write('C:/dev-git/Python_Institute/xml/movies.xml', 'UTF-8', True)
 
 # how to build an xml document in Python.
 # The Element class constructor takes two arguments. The first is the name of the tag to be created,
@@ -389,14 +389,14 @@ ET.dump(root)
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         print(row)
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         print(','.join(row))
@@ -405,7 +405,7 @@ with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfil
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         print(row['Name'], ':', row['Phone'])
@@ -414,7 +414,7 @@ with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfil
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/contacts.csv', newline='') as csvfile:
     fieldnames = ['Name', 'Phone']
     reader = csv.DictReader(csvfile, fieldnames=fieldnames)
     for row in reader:
@@ -426,7 +426,7 @@ with open('C:/Personal/Python_Institute/csv/contacts.csv', newline='') as csvfil
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=',')
 
     writer.writerow(['Name', 'Phone'])
@@ -449,7 +449,7 @@ with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     writer.writerow(['Name', 'Phone'])
@@ -463,7 +463,7 @@ with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline
 
 import csv
 
-with open('C:/Personal/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
+with open('C:/dev-git/Python_Institute/csv/exported_contacts.csv', 'w', newline='') as csvfile:
     fieldnames = ['Name', 'Phone']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -535,7 +535,7 @@ logger.debug('Your DEBUG message')
 
 import logging
 
-logging.basicConfig(level=logging.CRITICAL, filename='C:/Personal/Python_Institute/logs/prod.log', filemode='a')
+logging.basicConfig(level=logging.CRITICAL, filename='C:/dev-git/Python_Institute/logs/prod.log', filemode='a')
 
 logger = logging.getLogger()
 
@@ -648,9 +648,12 @@ logger.debug('Your DEBUG message')
 import configparser
 
 config = configparser.ConfigParser()
-print(config.read('C:/Personal/Python_Institute/config/config.ini'))
+print(config.read('C:/dev-git/Python_Institute/config/config.ini'))
 
 print('Sections:', config.sections(), '\n')
+
+print(config.get('mariadb', 'host'))
+
 
 print('mariadb section:')
 print('Host:', config['mariadb']['host'])
@@ -731,7 +734,7 @@ config['mariadb'] = {'name': 'hello',
 config['redis'] = {'port': 6379,
                    'db': 0}
 
-with open('C:/Personal/Python_Institute/config/config.ini', 'w') as configfile:
+with open('C:/dev-git/Python_Institute/config/config.ini', 'w') as configfile:
     config.write(configfile)
 
 # ---------------------------------------------------------------------

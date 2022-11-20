@@ -385,8 +385,8 @@ print(p1 + p2)
 # /	    __div__(self, other)	division operator
 # %	    __mod__(self, other)	modulo operator
 # **	__pow__(self, other)	exponential (power) operator
-# Augumented operators and functions
-# By augumented assignment we should understand a sequence of unary operators and assignments like a += 20
+# Augmented operators and functions
+# By augmented assignment we should understand a sequence of unary operators and assignments like a += 20
 #
 # Function or operator	Magic method	Implementation meaning or purpose
 # +=	__iadd__(self, other)	addition and assignment operator
@@ -519,6 +519,8 @@ class E(C, B):
     pass
 
 
+E().info()
+
 # As a result, those classes can behave totally differently, because the order of the superclasses is different.
 
 # ----------------------------------------------------------------------
@@ -642,6 +644,8 @@ combiner(10, '20', 40, 60, 30, argument1=50, argument2='66')
 def combiner(a, b, *args, **kwargs):
     super_combiner(*args, **kwargs)
     # if we remove asteriks all is captured by my_args
+    print(args)
+    print(kwargs)
     super_combiner(args, kwargs)
 
 
@@ -1360,7 +1364,7 @@ class TestConnection(Connection):
         super().__init__('1000Mbit/s')
 
 
-# I started my IT adventure with an old-school dial up connection
+# I started my IT adventure with an old-school dial-up connection
 my_computer = Personal_Computer('1995', DialUp())
 my_computer.connection.download()
 
@@ -1708,7 +1712,7 @@ except Exception as e:
 
 
 class RocketNotReadyError(Exception):
-    # print(Exception.__name__)
+    print("inner exception:", Exception.__name__)
     pass
 
 
@@ -2085,7 +2089,7 @@ print('b_example.properties:', b_example.properties)
 # Python objects can also be serialized using a module called 'pickle', and using this module, you can 'pickle'
 # your Python objects for later use.
 #
-# The 'pickle' module is a very popular and convinient module for data serialization in the world of Pythonistas.
+# The 'pickle' module is a very popular and convenient module for data serialization in the world of Pythonistas.
 #
 # So, what can be pickled and then unpickled?
 #
@@ -2254,7 +2258,7 @@ new_shelve.close()
 #
 # the len() function;
 # the in operator;
-# the keys() anditems() methods;
+# the keys() and items() methods;
 # the update operation, which works the same as when applied to a Python dictionary;
 # the del instruction, used to delete a key-value pair.
 
@@ -2464,7 +2468,6 @@ class test:
 
 t = test()
 print(t._test__numbers)
-
 
 # ----------------------------------------------------------------------
 
